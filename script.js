@@ -1,40 +1,82 @@
-const search = document.querySelector('.my-btn') 
-search.addEventListener('click', function() {
-    const input = document.querySelector('.input-key')
-    fetch('https://www.omdbapi.com/?apikey=a3f11cf&s=' + input.value)
-        .then(response => response.json())
-        .then(response => {
-            const movies = response.Search
-            let films = '';
-            movies.forEach( m => films += showMovies(m)  )
+// const search = document.querySelector('.my-btn') 
+// search.addEventListener('click', function() {
+//     const input = document.querySelector('.input-key')
+//     fetch('https://www.omdbapi.com/?apikey=a3f11cf&s=' + input.value)
+//         .then(response => response.json())
+//         .then(response => {
+//             const movies = response.Search
+//             let films = '';
+//             movies.forEach( m => films += showMovies(m)  )
 
-            const movieContain = document.querySelector('.movie-container')
-            movieContain.innerHTML = films;
+//             const movieContain = document.querySelector('.movie-container')
+//             movieContain.innerHTML = films;
 
 
-            // when modal on click
-            const modal = document.querySelectorAll('.modal-class')
-            modal.forEach( btn => {
-                btn.addEventListener('click', function() {
-                    const imdbid = btn.dataset.imdbid
+//             // when modal on click
+//             const modal = document.querySelectorAll('.modal-class')
+//             modal.forEach( btn => {
+//                 btn.addEventListener('click', function() {
+//                     const imdbid = btn.dataset.imdbid
                     
-                    fetch('https://www.omdbapi.com/?apikey=a3f11cf&i=' + imdbid)
-                        .then(response => response.json())
-                        .then( m => {
-                            const movieDetail = showDescMovies(m)
-                            const modalContain = document.querySelector('.modal-body')
-                            modalContain.innerHTML = movieDetail
-                        } )
-                })
-            } )
+//                     fetch('https://www.omdbapi.com/?apikey=a3f11cf&i=' + imdbid)
+//                         .then(response => response.json())
+//                         .then( m => {
+//                             const movieDetail = showDescMovies(m)
+//                             const modalContain = document.querySelector('.modal-body')
+//                             modalContain.innerHTML = movieDetail
+//                         } )
+//                 })
+//             } )
            
-        })
+//         })
+// })
+
+const searchButton = document.querySelector('.my-btn')
+searchButton.addEventListener('click', async function() {
+    const inputKeyword = document.querySelector('.input-key')
+    const movies = await getMoviesData(inputKeyword.value)
+    updateUI(movies)
 })
+
+// Event Binding
+document.addEventListener('click', async function(e) {
+    if( e.target.classList.contains('modal-class') ) {
+        const imdbid = e.target.dataset.imdbid
+        const moviesDetail = await getMoviesDetail(imdbid)
+        updateUIDetail(moviesDetail)
+    }
+})
+
+
+function getMoviesData(keyword) {
+    return fetch('https://www.omdbapi.com/?apikey=a3f11cf&s=' + keyword)         
+        .then(response => response.json())
+        .then(response => response.Search)
+}
+function updateUI(movies) {
+    let films = '';
+    movies.forEach( m => films += showMovies(m)  )
+
+    const movieContain = document.querySelector('.movie-container')
+    movieContain.innerHTML = films;
+}
+
+function getMoviesDetail(imdbid) {
+   return fetch('https://www.omdbapi.com/?apikey=a3f11cf&i=' + imdbid)
+            .then(response => response.json())
+            .then( m => m )
+}
+
+function updateUIDetail(m) {
+    const movieDetail = showDescMovies(m)
+    const modalContain = document.querySelector('.modal-body')
+    modalContain.innerHTML = movieDetail
+}  
 
 
 
 function showMovies(m) {
-    return `<div class="col-md-4 my-3">
+    return `<div class="col-md my-3">
                 <div class="card">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <img src="${m.Poster}">
