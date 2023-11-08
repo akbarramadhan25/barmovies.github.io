@@ -39,12 +39,11 @@ searchButton.addEventListener('click', async function() {
     updateUI(movies)
     }
     catch(err) {
-    //    Swal.fire({
-    //         icon: 'error',
-    //         title: 'Oops...',
-    //         text: err.message
-    //    })
-    console.log(err)
+       Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.message
+       })
            
     }
     
