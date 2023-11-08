@@ -35,15 +35,16 @@ const searchButton = document.querySelector('.my-btn')
 searchButton.addEventListener('click', async function() {
     try {
         const inputKeyword = document.querySelector('.input-key')
-    const movies = await getMoviesData(inputKeyword.value)
+    let movies = await getMoviesData(inputKeyword.value)
     updateUI(movies)
     }
     catch(err) {
-       Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.message
-       })
+    //    Swal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: err.message
+    //    })
+    console.log(err)
            
     }
     
@@ -61,6 +62,7 @@ function getMoviesData(keyword) {
             if ( response.Response === "False" ) {
                 throw new Error(response.Error)
             }
+            return response.Search;
         })
 }
 function updateUI(movies) {
