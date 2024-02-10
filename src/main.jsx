@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Container from './Container'
 import Movie from './showDetails'
 
-
+console.log(window.location.pathname)
 const router = createBrowserRouter([
   {
     path : '/',
