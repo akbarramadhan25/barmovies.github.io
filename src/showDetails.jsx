@@ -28,8 +28,8 @@ export default function Movie() {
     const image = `https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`
     const nameGenre = movieDetails.genres.map((genre) => genre.name)
     const gapName = nameGenre.join(', ')
-    const actors = movieDetails.credits.cast.slice(0,8)
-    const crews = movieDetails.credits.crew.slice(0,8)
+    const actors = movieDetails.credits.cast.slice(0,7)
+    const crews = movieDetails.credits.crew.slice(0,7)
     const video_key = movieDetails.videos.results[0].key
   
     function Actors() {
@@ -51,7 +51,7 @@ export default function Movie() {
             <>
                 {crews.map( e => (
                     <div key={e.credit_id} className='p-4 '>
-                        <img src={`https://image.tmdb.org/t/p/w154${e.profile_path}`} alt="" className='opacity-80' />
+                        <img src={`https://image.tmdb.org/t/p/154${e.profile_path}`} alt="" className='opacity-80' />
                         <h2 className='text-xl opacity-80 text-white font-medium py-2'>{e.name}</h2>
                         <p className='text-sm opacity-80 text-white text-wrap'>{e.job}</p>
                     </div>
@@ -63,7 +63,7 @@ export default function Movie() {
     return(
         <>
             <div className='bg-slate-950 relative max-h-[7000px] pb-3'>
-            <div className='ucok max-w-full min-h-[140vh] bg-cover bg-center bg-no-repeat' style={{
+            <div className='ucok max-w-full max-h-[145vh] bg-cover bg-center bg-no-repeat' style={{
                 backgroundImage : `url(${image})`,
             }}>
                 <div className='overlay absolute inset-0 bg-black opacity-80'></div>
@@ -95,13 +95,13 @@ export default function Movie() {
             </div>
             <div className="w-full mx-auto px-2 pt-16">
                 <h1 className="text-start ps-9 mb-14 py-4 text-orange-600 font-medium text-3xl md:text-6xl opacity-80 ">Aktor</h1>
-                <div className="w-full md:columns-4 columns-2 px-2 flex justify-center flex-wrap gap-10">
+                <div className="w-full md:columns-4 columns-2 px-10 flex justify-center flex-wrap gap-10">
                     <Actors />
                 </div>
             </div>
             <div className="w-full mx-auto px-2 pt-16 mt-5">
                 <h1 className="text-start ps-9 mb-14 py-4 text-orange-600 font-medium text-3xl md:text-6xl opacity-80 ">Crew</h1>
-                <div className="w-full md:columns-4 columns-2 px-2 flex justify-center flex-wrap gap-10">
+                <div className="w-full md:columns-4 columns-2 max-c px-10 flex justify-center flex-wrap gap-10">
                     <Crew />
                 </div>
             </div>
