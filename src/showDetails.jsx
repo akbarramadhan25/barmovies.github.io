@@ -71,7 +71,7 @@ export default function Movie() {
                     <img src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} className='w-[70%] h-[50%] md:w-[25%] md:h-[70%] md:mt-0 rounded-lg  mx-auto md:mx-0 opacity-80'/>
                     <div className="w-[90%] md:w-[60%] py-5 mx-auto md:mx-0 h-[70%] md:ml-0 ">
                         <h1 className="md:text-5xl text-3xl opacity-80 text-white font-medium  pb-2">{movieDetails.title}</h1>
-                        <h3 className='text-xl opacity-80 text-white pb-10'>{movieDetails.release_date} ~ {gapName}</h3>
+                        <h3 className='text-sm opacity-80 text-white pb-10'>{movieDetails.release_date} ~ {gapName}</h3>
                         <p className='text-sm md:text-xl italic pb-5 text-white opacity-80'>{movieDetails.tagline}</p>
                         <h2 className='text-2xl text-white font-medium pb-3 opacity-80'>Overview</h2>
                         <p className='text-sm md:text-xl text-white  opacity-80' >{movieDetails.overview}</p>
@@ -81,7 +81,7 @@ export default function Movie() {
                                 <p className='text-sm md:text-xl text-white pb-4 opacity-80'>{movieDetails.production_countries.map((negara) => negara.name).join(', ')}</p>
                                 <h2 className='text-xl md:text-2xl text-white font-medium pb-2 italic opacity-80'>Penggemar</h2>
                                 <p className='text-sm md:text-xl text-white   opacity-80 mb-10'>{movieDetails.popularity}</p>
-                                <a href={video_key ? `https://www.youtube.com/watch?v=${video_key}` : '#'} className='px-4 py-2 bg-orange-600 text-white text-xl hover:bg-orange-400 opacity-80' target="_blank" rel="noopener noreferrer">
+                                <a href={video_key ? `https://www.youtube.com/watch?v=${video_key}` : '#'} className='px-4 py-2 bg-orange-600 text-white text-sm hover:bg-orange-400 opacity-80' target="_blank" rel="noopener noreferrer">
                                 {video_key ? 'Tonton' : 'Video tidak tersedia'}
                                 </a>
                             </div>
