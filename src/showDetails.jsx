@@ -63,7 +63,7 @@ export default function Movie() {
     return(
         <>
             <div className='bg-slate-950 relative max-h-[7000px] pb-3'>
-            <div className='ucok max-w-full max-h-[145vh] bg-cover bg-center bg-no-repeat' style={{
+            <div className='ucok max-w-full min-h-[145vh] bg-cover bg-center bg-no-repeat' style={{
                 backgroundImage : `url(${image})`,
             }}>
                 <div className='overlay absolute inset-0 bg-black opacity-80'></div>
