@@ -51,7 +51,7 @@ export default function Movie() {
             <>
                 {crews.map( e => (
                     <div key={e.credit_id} className='p-4 '>
-                        <img src={`https://image.tmdb.org/t/p/154${e.profile_path}`} alt="" className='opacity-80' />
+                        <img src={`https://image.tmdb.org/t/p/w154${e.profile_path}`} alt="" className='opacity-80' />
                         <h2 className='text-xl opacity-80 text-white font-medium py-2'>{e.name}</h2>
                         <p className='text-sm opacity-80 text-white text-wrap'>{e.job}</p>
                     </div>
